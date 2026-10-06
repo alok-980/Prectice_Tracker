@@ -1,21 +1,58 @@
 import React from "react";
 import { useQuestionForm } from "../../hooks/useQuestionForm";
 
-const QuestionForm = () => {
-  
+const fieldStyle =
+  "w-full rounded-input border-2 bg-surface-soft px-4 py-3 text-sm font-bold text-ink outline-none transition focus:bg-white";
 
-  const { navigate, register, handleSubmit, errors, reset, questionSubmit, CATEGORIES, DIFFICULTIES, STATUSES } = useQuestionForm();
+const getFieldStyle = (hasError) =>
+  `${fieldStyle} ${hasError ? "border-coral" : "border-border focus:border-primary"}`;
+
+const labelStyle = "mb-1.5 block text-sm font-bold text-ink";
+const errorStyle =
+  "mt-1.5 flex items-center gap-1 text-xs font-bold text-coral-ink";
+
+const QuestionForm = () => {
+  const {
+    navigate,
+    register,
+    handleSubmit,
+    errors,
+    reset,
+    questionSubmit,
+    CATEGORIES,
+    DIFFICULTIES,
+    STATUSES,
+  } = useQuestionForm();
 
   return (
-    <div>
-      <h1>Questions</h1>
-      <form onSubmit={handleSubmit(questionSubmit)} noValidate>
+    <div className="mx-auto w-full rounded-hero border border-border bg-surface p-5 shadow-soft md:p-8">
+      <div className="mb-6 flex items-center gap-3">
+        <span className="grid size-12 shrink-0 place-items-center rounded-input bg-linear-to-br from-primary to-pink text-2xl shadow-soft">
+          ✨
+        </span>
         <div>
-          <label htmlFor="title">Title</label>
+          <h1 className="text-2xl text-ink">Add New Question</h1>
+          <p className="text-sm font-semibold text-muted">
+            Add a new question and start tracking it
+          </p>
+        </div>
+      </div>
+
+      <form
+        className="flex flex-col gap-5"
+        onSubmit={handleSubmit(questionSubmit)}
+        noValidate
+      >
+        <div>
+          <label className={labelStyle} htmlFor="title">
+            📌 Title
+          </label>
           <div>
             <input
+              className={getFieldStyle(errors.title)}
               id="title"
               type="text"
+              placeholder="e.g. Reverse a linked list"
               {...register("title", {
                 required: "Title is required",
                 minLength: {
@@ -27,51 +64,68 @@ const QuestionForm = () => {
               })}
             />
           </div>
-          {errors.title && <p>{errors.title.message}</p>}
+          {errors.title && (
+            <p className={errorStyle}>⚠️ {errors.title.message}</p>
+          )}
         </div>
 
-        <div>
-          <label htmlFor="category">Category</label>
+        <div className="grid gap-5 sm:grid-cols-2">
           <div>
-            <select
-              id="category"
-              {...register("category", { required: "Category is required" })}
-            >
-              <option value="">Select category</option>
-              {CATEGORIES.map((item, idx) => (
-                <option key={idx} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
+            <label className={labelStyle} htmlFor="category">
+              🗂️ Category
+            </label>
+            <div>
+              <select
+                className={`${getFieldStyle(errors.category)} cursor-pointer`}
+                id="category"
+                {...register("category", { required: "Category is required" })}
+              >
+                <option value="">Select category</option>
+                {CATEGORIES.map((item, idx) => (
+                  <option key={idx} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {errors.category && (
+              <p className={errorStyle}>⚠️ {errors.category.message}</p>
+            )}
           </div>
-          {errors.category && <p>{errors.category.message}</p>}
-        </div>
 
-        <div>
-          <label htmlFor="difficulty">Difficulty</label>
           <div>
-            <select
-              id="difficulty"
-              {...register("difficulty", {
-                required: "Difficulty is required",
-              })}
-            >
-              <option value="">Select difficulty</option>
-              {DIFFICULTIES.map((item, idx) => (
-                <option key={idx} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
+            <label className={labelStyle} htmlFor="difficulty">
+              🔥 Difficulty
+            </label>
+            <div>
+              <select
+                className={`${getFieldStyle(errors.difficulty)} cursor-pointer`}
+                id="difficulty"
+                {...register("difficulty", {
+                  required: "Difficulty is required",
+                })}
+              >
+                <option value="">Select difficulty</option>
+                {DIFFICULTIES.map((item, idx) => (
+                  <option key={idx} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {errors.difficulty && (
+              <p className={errorStyle}>⚠️ {errors.difficulty.message}</p>
+            )}
           </div>
-          {errors.difficulty && <p>{errors.difficulty.message}</p>}
         </div>
 
         <div>
-          <label htmlFor="status">Status</label>
+          <label className={labelStyle} htmlFor="status">
+            🚦 Status
+          </label>
           <div>
             <select
+              className={`${getFieldStyle(errors.status)} cursor-pointer`}
               id="status"
               {...register("status", { required: "Status is required" })}
             >
@@ -82,14 +136,29 @@ const QuestionForm = () => {
               ))}
             </select>
           </div>
-          {errors.status && <p>{errors.status.message}</p>}
+          {errors.status && (
+            <p className={errorStyle}>⚠️ {errors.status.message}</p>
+          )}
         </div>
 
-        <button type="submit">Add Question</button>
-        <button onClick={() => {
-            reset(),
-            navigate('/question')
-        }}>Cancle</button>
+        <div className="mt-2 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+          <button
+            className="rounded-pill border-2 border-border bg-surface px-6 py-3 text-sm font-bold text-muted transition hover:border-coral hover:text-coral-ink md:text-base"
+            type="button"
+            onClick={() => {
+              reset();
+              navigate("/question");
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            className="flex items-center justify-center gap-2 rounded-pill bg-primary px-6 py-3 text-sm font-bold text-white shadow-press transition hover:bg-primary-dark active:translate-y-0.5 active:shadow-none md:text-base"
+            type="submit"
+          >
+            <span className="text-xl leading-none">+</span> Add Question
+          </button>
+        </div>
       </form>
     </div>
   );

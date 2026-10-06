@@ -26,9 +26,15 @@ const Progress = () => {
   } = useProgress(questions);
 
   return (
-    <div>
-      <h1>Progress</h1>
-      <div className="w-full flex justify-between">
+    <div className="flex flex-col gap-4 md:gap-6">
+      <div>
+        <h1 className="text-2xl text-ink md:text-3xl">Your Progress 🎯</h1>
+        <p className="text-sm font-semibold text-muted">
+          See how much you've covered and what's left 💪
+        </p>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 md:gap-5">
         <DSA_Progress
           dsaProgress={dsaProgress}
           totalDSAQuestion={totalDSAQuestion}
@@ -45,6 +51,7 @@ const Progress = () => {
           technicalCompletedQuestion={technicalCompletedQuestion}
         />
       </div>
+
       <div>
         <OverAllProgress
           overAllProgress={overAllProgress}

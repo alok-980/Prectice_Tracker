@@ -13,6 +13,10 @@ const DSA_Progress = ({
         value={dsaProgress}
         totaQuestion={totalDSAQuestion}
         totalCompletedQuestion={dsaCompletedQuestion}
+        icon="🧩"
+        cardStyle="bg-pink-soft"
+        barStyle="bg-pink"
+        valueStyle="text-pink-ink"
       />
     </div>
   );

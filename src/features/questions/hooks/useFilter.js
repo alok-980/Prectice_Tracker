@@ -11,10 +11,10 @@ export const useFilter = (questions) => {
     const [search, setSearch] = useState("")
     const [filters, setFilters] = useState(defaultFilters)
 
-    // typing rukne ke 500ms baad hi search chalega
+    // search runs only after the user stops typing for 500ms
     const debouncedSearch = useDebounce(search, 500)
 
-    // select ke name se pata chalta hai kaunsa filter badla (category / status / difficulty)
+    // the select's name tells which filter changed
     const handleFilterChange = (e) => {
         setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }

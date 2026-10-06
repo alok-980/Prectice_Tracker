@@ -13,6 +13,10 @@ const TechnicalProgress = ({
         value={technicalProgress}
         totaQuestion={totalTechnicalQuestion}
         totalCompletedQuestion={technicalCompletedQuestion}
+        icon="💻"
+        cardStyle="bg-sky-soft"
+        barStyle="bg-sky"
+        valueStyle="text-sky-ink"
       />
     </div>
   );

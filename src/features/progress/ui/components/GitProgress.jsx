@@ -13,6 +13,10 @@ const GitProgress = ({
         value={gitProgress}
         totaQuestion={totalGitQuestion}
         totalCompletedQuestion={gitCompletedQuestion}
+        icon="🌿"
+        cardStyle="bg-orange-soft"
+        barStyle="bg-orange"
+        valueStyle="text-orange-ink"
       />
     </div>
   );

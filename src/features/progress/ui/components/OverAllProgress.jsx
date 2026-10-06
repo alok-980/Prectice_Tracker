@@ -13,6 +13,11 @@ const OverAllProgress = ({
         value={overAllProgress}
         totaQuestion={totalQuestion}
         totalCompletedQuestion={totalCompletedQuestion}
+        icon="🏆"
+        cardStyle="bg-mint-soft"
+        barStyle="bg-linear-to-r from-mint to-sky"
+        valueStyle="text-mint-ink"
+        big
       />
     </div>
   );
