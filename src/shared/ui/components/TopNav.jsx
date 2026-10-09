@@ -39,9 +39,9 @@ const TopNav = () => {
         <span className="hidden items-center gap-2 rounded-pill bg-sky-soft px-4 py-2 text-sm font-bold text-sky-ink sm:flex">
           📅 {today}
         </span>
-        <div className="grid size-10 place-items-center rounded-pill bg-linear-to-br from-mint/80 to-mint-soft/80 text-xl shadow-soft">
+        {/* <div className="grid size-10 place-items-center rounded-pill bg-linear-to-br from-mint/80 to-mint-soft/80 text-xl shadow-soft">
           🧑‍💻
-        </div>
+        </div> */}
       </div>
     </div>
   );

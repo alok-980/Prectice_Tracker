@@ -6,12 +6,12 @@ const badgeStyle =
 
 const categoryStyle = {
   DSA: { color: "bg-primary-soft text-primary-dark", icon: "🧩" },
-  Git: { color: "bg-orange-soft text-orange-ink", icon: "🌿" },
+  Git: { color: "bg-orange-soft text-orange-ink", icon: "🐱" },
   Technical: { color: "bg-sky-soft text-sky-ink", icon: "💻" },
 };
 
 const difficultyStyle = {
-  Easy: { color: "bg-mint-soft text-mint-ink", icon: "🌱" },
+  Easy: { color: "bg-mint-soft text-mint-ink", icon: "😊" },
   Medium: { color: "bg-sunny-soft text-ink", icon: "⚡" },
   Hard: { color: "bg-coral-soft text-coral-ink", icon: "🔥" },
 };
